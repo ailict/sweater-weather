@@ -42,7 +42,7 @@ function appendToHistory(search) {
   }
   searchHistory.push(search);
 ​
-  /*SET IN LOCALSTORAGE*/('search-history', JSON.stringify(searchHistory));
+  localStorage.setItem('search-history', JSON.stringify(searchHistory));
   renderSearchHistory();
 };
 ​
@@ -61,22 +61,22 @@ function renderCurrentWeather(city, weather, timezone) {
   var date = dayjs().tz(timezone).format('M/D/YYYY');
 ​
   // Store response data from our fetch request in variables
-  var tempF = /*API DATA*/;
-  var windMph = /*API DATA*/;
-  var humidity = /*API DATA*/;
-  var uvi = /*API DATA*/;
-  var iconUrl = `https://openweathermap.org/img/w/${/*API DATA*/}.png`;
+  var tempF = current.temp;
+  var windMph = current.wind_speed;
+  var humidity = current.humidity;
+  var uvi = current.uvi;
+  var iconUrl = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 ​
   // Create the UI elements as variables
-  var card = /*SOMETHING*/;
-  var cardBody = /*SOMETHING*/;
-  var heading = /*SOMETHING*/;
-  var weatherIcon = /*SOMETHING*/;
-  var tempEl = /*SOMETHING*/;
-  var windEl = /*SOMETHING*/;
-  var humidityEl = /*SOMETHING*/;
-  var uvEl = /*SOMETHING*/;
-  var uviBadge = /*SOMETHING*/;
+  var card = document.createElement("div");
+  var cardBody = document.createElement("div");
+  var heading = document.createElement("h2");
+  var weatherIcon = document.createElement("img");
+  var tempEl = document.createElement("p");
+  var windEl = document.createElement("p");
+  var humidityEl = document.createElement("p");
+  var uvEl = document.createElement("p");
+  var uviBadge = document.createElement("div");
 ​
   card.setAttribute('class', 'card');
   cardBody.setAttribute('class', 'card-body');
