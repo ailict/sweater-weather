@@ -87,14 +87,14 @@ function renderCurrentWeather(city, weather, timezone) {
   windEl.setAttribute('class', 'card-text');
   humidityEl.setAttribute('class', 'card-text');
 ​
-  heading.textContent = /*set text = City, Date*/;
+  heading.textContent = city+", "+date;
   weatherIcon.setAttribute('src', iconUrl);
   weatherIcon.setAttribute('class', 'weather-img');
-  heading./*APPEND weatherIcon*/;
-  tempEl.textContent = /*set text = tempF*/;
-  windEl.textContent = /*set text = windMph*/;
-  humidityEl.textContent = /*set text = humidity*/;
-  cardBody./*APPEND heading, tempEl, windEl, humidityEl)*/;
+  heading.appendChild(weatherIcon);
+  tempEl.textContent = "Temperature: " + current.temp;
+  windEl.textContent = "Wind Speed: " + current.wind_speed;
+  humidityEl.textContent = "Humidity: " + current.humidity;
+  cardBody.appendChild(heading)(tempEl)(windEl)(humidityEl);
 ​
   uvEl.textContent = 'UV Index: ';
   uviBadge.classList.add('btn', 'btn-sm');
