@@ -35,12 +35,12 @@ function renderSearchHistory() {
 }
 ​
 // Function to update history in local storage then updates displayed history.
-function appendToHistory(/*PARAM*/) {
+function appendToHistory(search) {
   // If there is no search term return the function
-  if (searchHistory.indexOf(/*PARAM*/) !== -1) {
+  if (searchHistory.indexOf(search) !== -1) {
     return;
   }
-  searchHistory.push(/*PARAM*/);
+  searchHistory.push(search);
 ​
   /*SET IN LOCALSTORAGE*/('search-history', JSON.stringify(searchHistory));
   renderSearchHistory();
