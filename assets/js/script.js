@@ -70,7 +70,7 @@ function renderCurrentWeather(city, weather, timezone) {
   // Create the UI elements as variables
   var card = document.createElement("div");
   var cardBody = document.createElement("div");
-  var heading = document.createElement("h2");
+  var heading = document.createElement("h3");
   var weatherIcon = document.createElement("img");
   var tempEl = document.createElement("p");
   var windEl = document.createElement("p");
@@ -80,7 +80,7 @@ function renderCurrentWeather(city, weather, timezone) {
 ​
   card.setAttribute('class', 'card');
   cardBody.setAttribute('class', 'card-body');
-  card./*APPEND CARDBODY*/;
+  card.appendChild(cardBody);
 ​
   heading.setAttribute('class', 'h3 card-title');
   tempEl.setAttribute('class', 'card-text');
