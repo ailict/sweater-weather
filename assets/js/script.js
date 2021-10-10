@@ -154,12 +154,12 @@ function renderForecastCard(forecast, timezone) {
   cardTitle.textContent = dayjs.unix(unixTs).tz(timezone).format('M/D/YYYY');
   weatherIcon.setAttribute('src', iconUrl);
   weatherIcon.setAttribute('alt', iconDescription);
-  tempEl.textContent = /*set text = tempF*/;
-  windEl.textContent = /*set text = windMph*/;
-  humidityEl.textContent = /*set text = humidity*/;
+  tempEl.textContent = "Temperature: " + daily.temp;
+  windEl.textContent = "Wind Speed: " + daily.wind_speed;
+  humidityEl.textContent = "Humidity: " + daily.humidity;
 ​
-  forecastContainer./*APPEND col*/;
-}
+  forecastContainer.append(col);
+};
 ​
 // Function to display 5 day forecast.
 function renderForecast(dailyForecast, timezone) {
@@ -168,15 +168,15 @@ function renderForecast(dailyForecast, timezone) {
   var endDt = dayjs().tz(timezone).add(6, 'day').startOf('day').unix();
 ​
   // Create elements
-  var headingCol = /*SOMETHING*/;
-  var heading = /*SOMETHING*/;
+  var headingCol = document.createElement('div');
+  var heading = document.createElement('h3');
 ​
   headingCol.setAttribute('class', 'col-12');
   heading.textContent = '5-Day Forecast:';
-  headingCol./*APPEND heading*/;
+  headingCol.append(heading);
 ​
   forecastContainer.innerHTML = '';
-  forecastContainer./*APPEND headingCol*/;
+  forecastContainer.append(headingCol);
   for (var i = 0; i < dailyForecast.length; i++) {
     // The api returns forecast data which may include 12pm on the same day and
     // always includes the next 7 days. The api documentation does not provide
