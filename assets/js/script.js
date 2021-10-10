@@ -109,11 +109,11 @@ function renderCurrentWeather(city, weather, timezone) {
   }
 ​
   uviBadge.textContent = uvi;
-  uvEl./*APPEND uviBadge*/;
-  cardBody./*APPEND uviEl*/;
+  uvEl.append(uviBadge);
+  cardBody.append(uvEl);
 ​
-  todayContainer.innerHTML = /*SET BLANK*/;
-  todayContainer./*APPEND card*/;
+  todayContainer.innerHTML = "";
+  todayContainer.append(card);
 }
 ​
 // Function to display a forecast card given an object from open weather api
@@ -123,23 +123,23 @@ function renderForecastCard(forecast, timezone) {
   var unixTs = forecast.dt;
   var iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
   var iconDescription = forecast.weather[0].description;
-  var tempF = /*TRAVERSE forecast to find out*/;
-  var { humidity } = /*TRAVERSE forecast to find out*/;
-  var windMph = /*TRAVERSE forecast to find out*/;
+  var tempF = daily.temp;
+  var { humidity } = daily.humidity;
+  var windMph = daily.wind_speed;
 ​
   // Create elements for a card
-  var col = /*SOMETHING*/;
-  var card = /*SOMETHING*/;
-  var cardBody = /*SOMETHING*/;
-  var cardTitle = /*SOMETHING*/;
-  var weatherIcon = /*SOMETHING*/;
-  var tempEl = /*SOMETHING*/;
-  var windEl = /*SOMETHING*/;
-  var humidityEl = /*SOMETHING*/;
+  var col = document.createElement("div");
+  var card = document.createElement("div");
+  var cardBody = document.createElement("div");
+  var cardTitle = document.createElement("h3");
+  var weatherIcon = document.createElement("img");
+  var tempEl = document.createElement("p");
+  var windEl = document.createElement("p");
+  var humidityEl = document.createElement("p");
 ​
-  col./*APPEND CARD*/;
-  card./*APPEND CARDBODY*/
-  cardBody./*APPEND cardTitle, weatherIcon, tempEl, windEl, humidityEl*/;
+  col.appendChild(card);
+  card.appendChild(cardBody)
+  cardBody.appendChild(cardTitle)(weatherIcon)(tempEl)(windEl)(humidityEl);
 ​
   col.setAttribute('class', 'col-md');
   col.classList.add('five-day-card');
