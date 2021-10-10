@@ -1,7 +1,7 @@
 // Global variables
 var searchHistory = [];
 var weatherApiRootUrl = 'https://api.openweathermap.org';
-var weatherApiKey = 'YOUR API KEY HERE';
+var weatherApiKey = 'debccf5f4a9dccd7603ea3f1b654cdab';
 ​
 // DOM element references
 var searchForm = document.querySelector('#search-form');
@@ -21,16 +21,16 @@ function renderSearchHistory() {
 ​
 ​
   // Start at end of history array and count down to show the most recent at the top.
-  for (var i = /*SOMETHING*/ - 1; i >= 0; i--) {
+  for (var i = searchHistory.length - 1; i >= 0; i--) {
     /*CREATE BTN*/
     btn.setAttribute('type', 'button');
     btn.setAttribute('aria-controls', 'today forecast');
     btn.classList.add('history-btn', 'btn-history');
 ​
     // `data-search` allows access to city name when click handler is invoked
-    btn.setAttribute('data-search', /*SOMETHING*/);
-    btn.textContent = /*SOMETHING*/;
-    /*APPEND BTN*/;
+    btn.setAttribute('data-search', searchHistory[i];
+    btn.textContent = searchHistory[i];
+    searchHistoryContainer.appendChild(btn);
   }
 }
 ​
