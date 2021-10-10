@@ -28,7 +28,7 @@ function renderSearchHistory() {
     btn.classList.add('history-btn', 'btn-history');
 ​
     // `data-search` allows access to city name when click handler is invoked
-    btn.setAttribute('data-search', searchHistory[i];
+    btn.setAttribute('data-search', searchHistory[i]);
     btn.textContent = searchHistory[i];
     searchHistoryContainer.appendChild(btn);
   }
@@ -202,6 +202,7 @@ function fetchWeather(location) {
   var apiUrl = `${weatherApiRootUrl}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${weatherApiKey}`;
 ​
   /*FETCH APIURL*/
+  fetch(apiUrl)
     /*.THEN() CONVERT THE RESPONSE FROM JSON*/
     .then(function (data) {
       renderItems(city, data);
@@ -209,12 +210,13 @@ function fetchWeather(location) {
     .catch(function (err) {
       console.error(err);
     });
-}
+};
 ​
 function fetchCoords(search) {
   var apiUrl = `${weatherApiRootUrl}/geo/1.0/direct?q=${search}&limit=5&appid=${weatherApiKey}`;
 ​
   /*FETCH APIURL*/
+  fetch(apiUrl)
     /*.THEN() CONVERT THE RESPONSE FROM JSON*/
     .then(function (data) {
       if (!data[0]) {
@@ -227,7 +229,7 @@ function fetchCoords(search) {
     .catch(function (err) {
       console.error(err);
     });
-}
+};
 ​
 function handleSearchFormSubmit(e) {
   // Don't continue if there is nothing in the search form
@@ -239,7 +241,7 @@ function handleSearchFormSubmit(e) {
   var search = searchInput.value.trim();
   fetchCoords(search);
   searchInput.value = '';
-}
+};
 ​
 function handleSearchHistoryClick(e) {
   // Don't do search if current elements is not a search history button
@@ -250,7 +252,7 @@ function handleSearchHistoryClick(e) {
   var btn = e.target;
   var search = btn.getAttribute('data-search');
   fetchCoords(search);
-}
+};
 ​
 initSearchHistory();
 searchForm.addEventListener('submit', handleSearchFormSubmit);
