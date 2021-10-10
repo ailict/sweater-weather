@@ -32,7 +32,7 @@ function renderSearchHistory() {
     btn.textContent = searchHistory[i];
     searchHistoryContainer.appendChild(btn);
   }
-}
+};
 ​
 // Function to update history in local storage then updates displayed history.
 function appendToHistory(search) {
@@ -44,17 +44,17 @@ function appendToHistory(search) {
 ​
   /*SET IN LOCALSTORAGE*/('search-history', JSON.stringify(searchHistory));
   renderSearchHistory();
-}
+};
 ​
 // Function to get search history from local storage
 function initSearchHistory() {
-  var storedHistory = /*GET FROM LOCALSTORAGE*/('search-history');
+  var storedHistory = localStorage.getItem('search-history');
   if (storedHistory) {
     // Sets the global var of searchHistory to whatever localstorage had if any
     searchHistory = JSON.parse(storedHistory);
   }
   renderSearchHistory();
-}
+};
 ​
 // Function to display the current weather data fetched from OpenWeather api.
 function renderCurrentWeather(city, weather, timezone) {
