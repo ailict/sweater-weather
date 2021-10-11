@@ -57,10 +57,10 @@ function renderSearchHistory() {
   var date = dayjs().tz(timezone).format('M/D/YYYY');
 
   // Store response data from our fetch request in variables
-  var tempF = current.temp;
-  var windMph = current.wind_speed;
-  var humidity = current.humidity;
-  var uvi = current.uvi;
+  var tempF = temp;
+  var windMph = wind_speed;
+  var humidity = humidity;
+  var uvi = uvi;
   var iconUrl = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 
   // Create the UI elements as variables
@@ -87,9 +87,9 @@ function renderSearchHistory() {
   weatherIcon.setAttribute('src', iconUrl);
   weatherIcon.setAttribute('class', 'weather-img');
   heading.appendChild(weatherIcon);
-  tempEl.textContent = "Temperature: " + current.temp;
-  windEl.textContent = "Wind Speed: " + current.wind_speed;
-  humidityEl.textContent = "Humidity: " + current.humidity;
+  tempEl.textContent = "Temperature: " + temp;
+  windEl.textContent = "Wind Speed: " + wind_speed;
+  humidityEl.textContent = "Humidity: " + humidity;
   cardBody.appendChild(heading)(tempEl)(windEl)(humidityEl);
 
   uvEl.textContent = 'UV Index: ';
@@ -119,9 +119,9 @@ function renderSearchHistory() {
   var unixTs = forecast.dt;
   var iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
   var iconDescription = forecast.weather[0].description;
-  var tempF = daily.temp;
-  var { humidity } = daily.humidity;
-  var windMph = daily.wind_speed;
+  var tempF = temp;
+  var { humidity } = humidity;
+  var windMph = wind_speed;
 
   // Create elements for a card
   var col = document.createElement("div");
@@ -150,9 +150,9 @@ function renderSearchHistory() {
   cardTitle.textContent = dayjs.unix(unixTs).tz(timezone).format('M/D/YYYY');
   weatherIcon.setAttribute('src', iconUrl);
   weatherIcon.setAttribute('alt', iconDescription);
-  tempEl.textContent = "Temperature: " + daily.temp;
-  windEl.textContent = "Wind Speed: " + daily.wind_speed;
-  humidityEl.textContent = "Humidity: " + daily.humidity;
+  tempEl.textContent = "Temperature: " + temp;
+  windEl.textContent = "Wind Speed: " + wind_speed;
+  humidityEl.textContent = "Humidity: " + humidity;
 
   forecastContainer.append(col);
  };
