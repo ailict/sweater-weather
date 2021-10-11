@@ -31,32 +31,29 @@ function renderSearchHistory() {
     btn.textContent = searchHistory[i];
     searchHistoryContainer.appendChild(btn);
   }
-};
-
-// Function to update history in local storage then updates displayed history.
-function appendToHistory(search) {
+ }; // Function to update history in local storage then updates displayed history.
+ function appendToHistory(search) {
   // If there is no search term return the function
   if (searchHistory.indexOf(search) !== -1) {
     return;
   }
   searchHistory.push(search);
-​
+
   localStorage.setItem('search-history', JSON.stringify(searchHistory));
   renderSearchHistory();
-};
-
-// Function to get search history from local storage
-function initSearchHistory() {
+ };
+ // Function to get search history from local storage
+ function initSearchHistory() {
   var storedHistory = localStorage.getItem('search-history');
   if (storedHistory) {
     // Sets the global var of searchHistory to whatever localstorage had if any
     searchHistory = JSON.parse(storedHistory);
   }
   renderSearchHistory();
-};
+ };
 
-// Function to display the current weather data fetched from OpenWeather api.
-function renderCurrentWeather(city, weather, timezone) {
+ // Function to display the current weather data fetched from OpenWeather api.
+ function renderCurrentWeather(city, weather, timezone) {
   var date = dayjs().tz(timezone).format('M/D/YYYY');
 
   // Store response data from our fetch request in variables
@@ -113,11 +110,11 @@ function renderCurrentWeather(city, weather, timezone) {
 
   todayContainer.innerHTML = "";
   todayContainer.append(card);
-}
+ }
 
-// Function to display a forecast card given an object from open weather api
-// daily forecast.
-function renderForecastCard(forecast, timezone) {
+ // Function to display a forecast card given an object from open weather api
+ // daily forecast.
+ function renderForecastCard(forecast, timezone) {
   // variables for data from api
   var unixTs = forecast.dt;
   var iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
@@ -158,9 +155,9 @@ function renderForecastCard(forecast, timezone) {
   humidityEl.textContent = "Humidity: " + daily.humidity;
 
   forecastContainer.append(col);
-};
-// Function to display 5 day forecast.
-function renderForecast(dailyForecast, timezone) {
+ };
+ // Function to display 5 day forecast.
+ function renderForecast(dailyForecast, timezone) {
   // Create unix timestamps for start and end of 5 day forecast
   var startDt = dayjs().tz(timezone).add(1, 'day').startOf('day').unix();
   var endDt = dayjs().tz(timezone).add(6, 'day').startOf('day').unix();
@@ -184,15 +181,15 @@ function renderForecast(dailyForecast, timezone) {
       renderForecastCard(dailyForecast[i], timezone);
     }
   }
-};
+ };
 
-function renderItems(city, data) {
+ function renderItems(city, data) {
   renderCurrentWeather(city, data.current, data.timezone);
   renderForecast(data.daily, data.timezone);
-};
-// Fetches weather data for given location from the Weather Geolocation
-// endpoint; then, calls functions to display current and forecast weather data.
-function fetchWeather(location) {
+  };
+ // Fetches weather data for given location from the Weather Geolocation
+ // endpoint; then, calls functions to display current and forecast weather data.
+ function fetchWeather(location) {
   var { lat } = location;
   var { lon } = location;
   var city = location.name;
@@ -207,9 +204,9 @@ function fetchWeather(location) {
     .catch(function (err) {
       console.error(err);
     });
-};
+ };
 
-function fetchCoords(search) {
+ function fetchCoords(search) {
   var apiUrl = `${weatherApiRootUrl}/geo/1.0/direct?q=${search}&limit=5&appid=${weatherApiKey}`;
 
   /*FETCH APIURL*/
@@ -226,9 +223,9 @@ function fetchCoords(search) {
     .catch(function (err) {
       console.error(err);
     });
-};
-​
-function handleSearchFormSubmit(e) {
+ };
+
+ function handleSearchFormSubmit(e) {
   // Don't continue if there is nothing in the search form
   if (!searchInput.value) {
     return;
@@ -238,19 +235,19 @@ function handleSearchFormSubmit(e) {
   var search = searchInput.value.trim();
   fetchCoords(search);
   searchInput.value = '';
-};
+ };
 
-function handleSearchHistoryClick(e) {
+ function handleSearchHistoryClick(e) {
   // Don't do search if current elements is not a search history button
   if (!e.target.matches('.btn-history')) {
     return;
   }
-​
+
   var btn = e.target;
   var search = btn.getAttribute('data-search');
   fetchCoords(search);
-};
+ };
 
-initSearchHistory();
-searchForm.addEventListener('submit', handleSearchFormSubmit);
-searchHistoryContainer.addEventListener('click', handleSearchHistoryClick);
+ initSearchHistory();
+ searchForm.addEventListener('submit', handleSearchFormSubmit);
+ searchHistoryContainer.addEventListener('click', handleSearchHistoryClick);
